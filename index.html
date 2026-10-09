@@ -30,8 +30,13 @@ h2{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;margin-bottom:.6rem}
 /* nav */
 nav{position:fixed;inset:0 0 auto;z-index:50;background:rgba(12,19,18,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:4.2rem}
-.logo{font:800 1.35rem var(--display);color:#fff}
-.logo i{color:var(--signal);font-style:normal}
+.logo{display:flex;align-items:center;gap:.7rem;color:#fff}
+.mark{width:2.5rem;height:2.5rem;border-radius:12px;background:rgba(61,220,151,.12);border:1px solid rgba(61,220,151,.35);color:var(--signal);display:grid;place-items:center;transition:.25s}
+.mark svg{width:1.6rem;height:1.6rem}
+.logo:hover .mark{background:var(--signal);color:#04130c}
+.logo-text{font:800 1.1rem/1.1 var(--display);letter-spacing:-.01em}
+.logo-text small{display:block;font:500 .72rem var(--body);letter-spacing:0;color:var(--muted);margin-top:.15rem}
+@media(max-width:480px){.logo-text small{display:none}}
 nav ul{display:flex;gap:.4rem;list-style:none;padding:0}
 nav ul a{display:block;padding:.45rem .9rem;border-radius:99px;color:var(--muted);font-weight:500;font-size:.95rem;transition:.2s}
 nav ul a:hover{background:var(--panel);color:#fff}
@@ -157,7 +162,10 @@ footer small{display:block;margin-top:2.5rem;color:var(--muted)}
 
 <nav>
   <div class="wrap">
-    <a href="#home" class="logo">ulil<i>_</i></a>
+    <a href="#home" class="logo" aria-label="Muhammad Ulil Abshor, home">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M2 20h10M28 20h10" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M12 9v22M28 9v22" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/><circle cx="20" cy="20" r="3.2" fill="#ffb347"/></svg></span>
+      <span class="logo-text">Ulil Abshor<small>Automation engineering</small></span>
+    </a>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
