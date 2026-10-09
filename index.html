@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Ulil Abshor | Automation Engineer</title>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Syncopate for headers (tech feel), Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,133 +22,177 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        tech: ['Syncopate', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#3b82f6', // Blue-500
-                        secondary: '#1e293b', // Slate-800
-                        darkbg: '#0f172a', // Slate-900
+                        primary: '#10b981', /* Emerald/Neon Green - Industrial Tech vibe */
+                        primary_dark: '#059669',
+                        secondary: '#18181b', /* Zinc 900 - Very dark */
+                        darkbg: '#09090b', /* Zinc 950 - Almost black */
+                        accent: '#34d399', /* Lighter green for glow */
+                    },
+                    boxShadow: {
+                        'neon': '0 0 15px rgba(16, 185, 129, 0.4)',
+                        'neon-strong': '0 0 25px rgba(16, 185, 129, 0.6)',
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #0f172a; color: #f8fafc; }
-        .nav-blur { backdrop-filter: blur(10px); background-color: rgba(15, 23, 42, 0.8); }
+        body { background-color: #09090b; color: #e4e4e7; overflow-x: hidden; }
+        .nav-blur { backdrop-filter: blur(12px); background-color: rgba(9, 9, 11, 0.85); border-bottom: 1px solid #27272a; }
+        
         .gradient-text {
-            background: linear-gradient(to right, #60a5fa, #3b82f6);
+            background: linear-gradient(to right, #34d399, #10b981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .timeline-dot {
-            width: 16px; height: 16px; background-color: #3b82f6;
-            border-radius: 50%; position: absolute; left: -8px; top: 24px;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        
+        /* Grid background pattern */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .timeline-line {
+            position: absolute; left: 15px; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, #10b981, transparent);
         }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #60a5fa; }
+        .timeline-dot {
+            width: 16px; height: 16px; background-color: #09090b;
+            border: 3px solid #10b981; border-radius: 50%;
+            position: absolute; left: 8px; top: 24px;
+            box-shadow: 0 0 10px #10b981;
+            z-index: 10;
+        }
+        
+        /* Circuit board decoration */
+        .circuit-deco { position: absolute; opacity: 0.05; z-index: 0; pointer-events: none; }
     </style>
 </head>
-<body class="antialiased font-sans leading-relaxed selection:bg-primary selection:text-white">
+<body class="antialiased font-sans leading-relaxed selection:bg-primary selection:text-black bg-grid relative">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 nav-blur border-b border-slate-800 transition-all duration-300">
+    <nav class="fixed w-full z-50 nav-blur transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="#home" class="text-xl font-bold tracking-wider text-white">ULIL<span class="text-primary">.</span></a>
+                <a href="#" class="text-xl font-tech font-bold tracking-widest text-white">ULIL<span class="text-primary">_</span></a>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-slate-300 hover:text-primary transition-colors text-sm font-medium">About</a>
-                    <a href="#experience" class="text-slate-300 hover:text-primary transition-colors text-sm font-medium">Experience</a>
-                    <a href="#projects" class="text-slate-300 hover:text-primary transition-colors text-sm font-medium">Projects</a>
-                    <a href="#education" class="text-slate-300 hover:text-primary transition-colors text-sm font-medium">Education</a>
-                    <a href="#contact" class="text-slate-300 hover:text-primary transition-colors text-sm font-medium">Contact</a>
+                    <a href="#about" class="text-zinc-400 hover:text-primary hover:shadow-neon transition-all text-sm font-medium tracking-wide">ABOUT</a>
+                    <a href="#experience" class="text-zinc-400 hover:text-primary transition-all text-sm font-medium tracking-wide">EXPERIENCE</a>
+                    <a href="#projects" class="text-zinc-400 hover:text-primary transition-all text-sm font-medium tracking-wide">PROJECTS</a>
+                    <a href="#education" class="text-zinc-400 hover:text-primary transition-all text-sm font-medium tracking-wide">EDUCATION</a>
                 </div>
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-slate-300 hover:text-white focus:outline-none" id="mobile-menu-btn">
+                <button class="md:hidden text-zinc-400 hover:text-white" id="mobile-menu-btn">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu Panel -->
-        <div class="md:hidden hidden bg-slate-900 border-t border-slate-800 shadow-xl absolute w-full" id="mobile-menu">
-            <a href="#about" class="block px-6 py-4 text-slate-300 hover:bg-slate-800 hover:text-primary border-b border-slate-800/50">About</a>
-            <a href="#experience" class="block px-6 py-4 text-slate-300 hover:bg-slate-800 hover:text-primary border-b border-slate-800/50">Experience</a>
-            <a href="#projects" class="block px-6 py-4 text-slate-300 hover:bg-slate-800 hover:text-primary border-b border-slate-800/50">Projects</a>
-            <a href="#education" class="block px-6 py-4 text-slate-300 hover:bg-slate-800 hover:text-primary border-b border-slate-800/50">Education</a>
-            <a href="#contact" class="block px-6 py-4 text-slate-300 hover:bg-slate-800 hover:text-primary">Contact</a>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-secondary border-t border-zinc-800" id="mobile-menu">
+            <a href="#about" class="block px-6 py-4 text-zinc-300 hover:bg-zinc-800 hover:text-primary font-tech text-sm">ABOUT</a>
+            <a href="#experience" class="block px-6 py-4 text-zinc-300 hover:bg-zinc-800 hover:text-primary font-tech text-sm">EXPERIENCE</a>
+            <a href="#projects" class="block px-6 py-4 text-zinc-300 hover:bg-zinc-800 hover:text-primary font-tech text-sm">PROJECTS</a>
+            <a href="#education" class="block px-6 py-4 text-zinc-300 hover:bg-zinc-800 hover:text-primary font-tech text-sm">EDUCATION</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center justify-center" id="home">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div data-aos="fade-up" data-aos-duration="1000">
-                <!-- FOTO PROFIL -->
-                <div class="w-36 h-36 mx-auto mb-8 rounded-full border-4 border-slate-700 hover:border-primary transition-colors duration-300 overflow-hidden shadow-2xl relative group">
-                    <img src="IMAGE_PORTO/FOTO_PROFIL.jpg" alt="Muhammad Ulil Abshor" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                </div>
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-[90vh]" id="home">
+        <!-- Glow effects -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -z-10 mix-blend-screen"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
                 
-                <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-3">Automation Engineering Student</h2>
-                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-                    Hi, I'm <span class="gradient-text">Muhammad Ulil Abshor</span>
-                </h1>
-                <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Aspiring Automation & Control Engineer specializing in PLC, HMI, Robotics, and Electrical Systems. Bridging the gap between software logic and physical machinery.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#projects" class="px-8 py-3 rounded-full bg-primary text-white font-medium hover:bg-blue-600 transition-all shadow-lg shadow-blue-500/30 transform hover:-translate-y-1">
-                        View My Work
-                    </a>
-                    <a href="https://linkedin.com/in/muhammad-ulil-abshor-298if" target="_blank" class="px-8 py-3 rounded-full bg-slate-800 text-white font-medium hover:bg-slate-700 border border-slate-700 transition-all transform hover:-translate-y-1">
-                        <i class="fab fa-linkedin mr-2"></i> Connect on LinkedIn
-                    </a>
+                <!-- Hero Text -->
+                <div class="lg:w-3/5 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary font-tech text-xs tracking-widest mb-6 shadow-neon">
+                        <i class="fas fa-bolt mr-2"></i> AUTOMATION ENGINEERING STUDENT
+                    </div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-tech font-bold text-white mb-4 uppercase tracking-tighter">
+                        Muhammad <br>
+                        <span class="gradient-text">Ulil Abshor</span>
+                    </h1>
+                    <p class="text-zinc-400 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Bridging the gap between software logic and physical machinery. Specializing in PLC, HMI, Robotics, and Electrical Control Systems.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#projects" class="px-8 py-3 bg-primary text-black font-tech font-bold text-sm tracking-wider hover:bg-accent transition-all shadow-neon hover:shadow-neon-strong text-center border border-primary">
+                            VIEW PROJECTS
+                        </a>
+                        <a href="https://linkedin.com/in/muhammad-ulil-abshor-298if" target="_blank" class="px-8 py-3 bg-transparent text-white font-tech font-bold text-sm tracking-wider hover:bg-zinc-800 transition-all border border-zinc-700 text-center flex items-center justify-center">
+                            <i class="fab fa-linkedin mr-3 text-xl"></i> LINKEDIN
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Hero Image (Fixed Path) -->
+                <div class="lg:w-2/5" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+                        <!-- Decorative border -->
+                        <div class="absolute inset-0 border-2 border-primary rounded-full animate-[spin_10s_linear_infinite] border-t-transparent"></div>
+                        <div class="absolute inset-2 border border-zinc-700 rounded-full animate-[spin_15s_linear_infinite_reverse] border-b-transparent"></div>
+                        
+                        <!-- Image Container -->
+                        <div class="absolute inset-4 rounded-full overflow-hidden border-4 border-zinc-800 bg-zinc-900 z-10 flex items-center justify-center">
+                            <!-- PASTIKAN FOLDERNYA BERNAMA IMAGE_PORTO -->
+                            <img src="IMAGE_PORTO/FOTO_PROFIL.jpg" alt="Muhammad Ulil Abshor" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Ulil+Abshor&background=10b981&color=000&size=256'; this.alt='Image not found, check folder path';">
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-        
-        <!-- Background Decoration -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] bg-primary/10 rounded-full blur-[100px] md:blur-[120px] -z-10 pointer-events-none"></div>
     </section>
 
+    <!-- Separator -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+
     <!-- About & Skills Section -->
-    <section class="py-20 bg-slate-800/30 border-y border-slate-800" id="about">
+    <section class="py-24 bg-secondary/50 relative" id="about">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 
                 <!-- About Text -->
-                <div data-aos="fade-right">
-                    <h3 class="text-3xl font-bold mb-6 text-white flex items-center">
-                        <i class="fas fa-user-astronaut text-primary mr-3"></i> About Me
+                <div data-aos="fade-up">
+                    <h3 class="text-2xl md:text-3xl font-tech font-bold mb-8 text-white flex items-center tracking-wide uppercase">
+                        <span class="w-8 h-8 mr-4 bg-primary/20 text-primary flex items-center justify-center rounded border border-primary/50 shadow-neon"><i class="fas fa-terminal text-sm"></i></span>
+                        System.About()
                     </h3>
-                    <p class="text-slate-400 leading-relaxed mb-4 text-justify">
-                        I am an Electrical Engineering student with practical experience in the electrical field and a strong passion for power electrical systems. I am committed to expanding my technical expertise and applying my knowledge to solve real-world engineering challenges.
-                    </p>
-                    <p class="text-slate-400 leading-relaxed text-justify">
-                        With excellent teamwork, adaptability, and a continuous learning mindset, I thrive in dynamic work environments and enjoy contributing innovative solutions. I am eager to connect with professionals in the electrical industry, exchange knowledge, and explore opportunities for collaboration and professional growth.
-                    </p>
+                    <div class="p-6 bg-zinc-900/80 border border-zinc-800 rounded-lg relative overflow-hidden group hover:border-primary/30 transition-colors">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-primary group-hover:shadow-neon transition-all"></div>
+                        <p class="text-zinc-400 leading-relaxed mb-4 text-justify font-mono text-sm">
+                            <span class="text-primary">> </span> I am an Electrical Engineering student with practical experience in the electrical field and a strong passion for power electrical systems. Committed to expanding technical expertise to solve real-world engineering challenges.
+                        </p>
+                        <p class="text-zinc-400 leading-relaxed text-justify font-mono text-sm">
+                            <span class="text-primary">> </span> Thriving in dynamic environments, I prioritize teamwork, adaptability, and continuous learning. Eager to connect with industry professionals, exchange knowledge, and explore opportunities for innovative collaboration.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Skills -->
-                <div data-aos="fade-left">
-                    <h3 class="text-3xl font-bold mb-6 text-white flex items-center">
-                        <i class="fas fa-microchip text-primary mr-3"></i> Technical Skills
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl md:text-3xl font-tech font-bold mb-8 text-white flex items-center tracking-wide uppercase">
+                        <span class="w-8 h-8 mr-4 bg-primary/20 text-primary flex items-center justify-center rounded border border-primary/50 shadow-neon"><i class="fas fa-microchip text-sm"></i></span>
+                        Tech_Stack
                     </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">PLC & HMI</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">Troubleshooting</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">Electrical Wiring & Panels</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">Internet of Things (IoT)</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">Robotics</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">ESP32 & Arduino</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">Computer Vision</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">Python & C++</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">LabVIEW</span>
-                        <span class="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm hover:border-primary hover:text-white transition-colors cursor-default">AutoCAD</span>
+                        <!-- Tech Pills with Industrial Look -->
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">PLC & HMI</span>
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">Troubleshooting</span>
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">Electrical Wiring & Panels</span>
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">IoT Systems</span>
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">Robotics</span>
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">ESP32 & Arduino</span>
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">Python & Computer Vision</span>
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">LabVIEW</span>
+                        <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs hover:border-primary hover:text-primary transition-all cursor-default uppercase tracking-wider">AutoCAD</span>
                     </div>
                 </div>
 
@@ -156,302 +200,65 @@
         </div>
     </section>
 
-    <!-- Experience Section (UPDATED WITH IMAGES) -->
-    <section class="py-20" id="experience">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Professional Experience</h2>
-                <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
-            </div>
+    <!-- Separator -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
 
-            <div class="relative border-l-2 border-slate-800 ml-4 md:ml-0" data-aos="fade-up">
-                
-                <!-- Experience: RMT -->
-                <div class="mb-10 relative pl-8 md:pl-10 group">
-                    <div class="timeline-dot group-hover:scale-125 transition-transform"></div>
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-colors flex flex-col md:flex-row gap-6 items-start">
-                        <!-- Gambar RMT -->
-                        <div class="w-full md:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden border border-slate-600 bg-slate-900">
-                            <img src="IMAGE_PORTO/RMT.jpg" alt="Research of Marine Technology" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <span class="text-primary text-sm font-semibold mb-1 block">Nov 2024 - Dec 2025</span>
-                            <h3 class="text-xl font-bold text-white">Electrician</h3>
-                            <h4 class="text-slate-400 text-sm mb-3 font-medium">Research of Marine Technology</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Contributed to the "Diponegoro 2.0" ship launch project as part of the electrical team. Responsible for wiring, electrical system installation, and troubleshooting on marine research vessels. Collaborated with a multidisciplinary team to ensure successful vessel launch.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience: HIMATRO -->
-                <div class="mb-10 relative pl-8 md:pl-10 group">
-                    <div class="timeline-dot group-hover:scale-125 transition-transform"></div>
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-colors flex flex-col md:flex-row gap-6 items-start">
-                        <!-- Gambar HIMATRO -->
-                        <div class="w-full md:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden border border-slate-600 bg-slate-900">
-                            <img src="IMAGE_PORTO/HIMATRO.jpg" alt="HIMATRO SV UNDIP" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <span class="text-primary text-sm font-semibold mb-1 block">May 2024 - Apr 2025</span>
-                            <h3 class="text-xl font-bold text-white">Research & Academic Affairs Staff</h3>
-                            <h4 class="text-slate-400 text-sm mb-3 font-medium">HIMATRO SV UNDIP</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Contributed to the "Bincang Ilmu Otomasi" program as the organizing committee chair. Enhanced organizational skills, public speaking, and team leadership within the university's automation engineering association.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience: Norxel -->
-                <div class="mb-10 relative pl-8 md:pl-10 group">
-                    <div class="timeline-dot group-hover:scale-125 transition-transform"></div>
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-colors flex flex-col md:flex-row gap-6 items-start">
-                        <!-- Gambar NORXEL -->
-                        <div class="w-full md:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden border border-slate-600 bg-slate-900">
-                            <img src="IMAGE_PORTO/NORXEL.jpg" alt="PT Norxel" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <span class="text-primary text-sm font-semibold mb-1 block">Mar 2023 - Aug 2023</span>
-                            <h3 class="text-xl font-bold text-white">Electrical Engineer (Contract)</h3>
-                            <h4 class="text-slate-400 text-sm mb-3 font-medium">PT Norxel Teknologi Indonesia</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Worked on machine fabrication and electrical wiring projects for banking equipment. Executed electrical wiring installation for Self-Service Banking (SSB) machines, ensuring compliance with safety standards. Designed machine body structures through precision welding techniques.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience: Arisa -->
-                <div class="mb-10 relative pl-8 md:pl-10 group">
-                    <div class="timeline-dot group-hover:scale-125 transition-transform"></div>
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-colors flex flex-col md:flex-row gap-6 items-start">
-                        <!-- Gambar ARISA -->
-                        <div class="w-full md:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden border border-slate-600 bg-slate-900 flex items-center justify-center">
-                            <img src="IMAGE_PORTO/ARISA.jpg" alt="Arisa Manufacturing" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <span class="text-primary text-sm font-semibold mb-1 block">Oct 2022 - Dec 2022</span>
-                            <h3 class="text-xl font-bold text-white">Engineering Intern</h3>
-                            <h4 class="text-slate-400 text-sm mb-3 font-medium">Arisa Manufacturing</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Supported maintenance operations and process documentation for manufacturing equipment. Performed maintenance on powder coating machine nozzles to maintain consistent coating quality and implemented standardized working instructions for welding.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Experience: Panasonic (PMI) -->
-                <div class="mb-10 relative pl-8 md:pl-10 group">
-                    <div class="timeline-dot group-hover:scale-125 transition-transform"></div>
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-colors flex flex-col md:flex-row gap-6 items-start">
-                        <!-- Gambar PMI -->
-                        <div class="w-full md:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden border border-slate-600 bg-slate-900">
-                            <img src="IMAGE_PORTO/PMI.jpg" alt="PT Panasonic Manufacturing Indonesia" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <span class="text-primary text-sm font-semibold mb-1 block">May 2022 - Jul 2022</span>
-                            <h3 class="text-xl font-bold text-white">Production Operator Intern</h3>
-                            <h4 class="text-slate-400 text-sm mb-3 font-medium">PT Panasonic Manufacturing Indonesia</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Operated production line machinery including strapping and vacuum packaging machines. Assisted in assembly and quality control processes for air conditioning production units.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Experience: Polytron -->
-                <div class="mb-10 relative pl-8 md:pl-10 group">
-                    <div class="timeline-dot group-hover:scale-125 transition-transform"></div>
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-primary/50 transition-colors flex flex-col md:flex-row gap-6 items-start">
-                        <!-- Gambar POLYTRON -->
-                        <div class="w-full md:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden border border-slate-600 bg-slate-900">
-                            <img src="IMAGE_PORTO/POLYTRON.jpg" alt="Polytron Indonesia" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <span class="text-primary text-sm font-semibold mb-1 block">Apr 2021 - Jun 2021</span>
-                            <h3 class="text-xl font-bold text-white">Engineering Intern</h3>
-                            <h4 class="text-slate-400 text-sm mb-3 font-medium">Polytron Indonesia</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                Gained hands-on experience in production line setup. Assisted in configuring assembly production lines and designed performance monitoring display screens for real-time assembly line tracking.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section (UPDATED WITH IMAGES) -->
-    <section class="py-20 bg-slate-800/30 border-y border-slate-800" id="projects">
+    <!-- Projects Section (Now with Images) -->
+    <section class="py-24 relative" id="projects">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Featured Projects</h2>
-                <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+                <h2 class="text-3xl md:text-5xl font-tech font-bold text-white mb-4 uppercase tracking-wider">Deployed Projects</h2>
+                <div class="w-24 h-1 bg-primary mx-auto shadow-neon"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Project 1: AGCS -->
-                <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-700 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 flex flex-col group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-56 w-full relative overflow-hidden bg-slate-800 border-b border-slate-700">
-                        <!-- Gambar ACGS -->
-                        <img src="IMAGE_PORTO/ACGS_1.jpg" alt="Automatic Garbage Collection System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-white mb-2 line-clamp-2">Automatic Garbage Collection System (AGCS) based on IoT</h3>
-                        <p class="text-slate-400 text-sm mb-4 line-clamp-3 flex-grow">
-                            A prototype automatic waste-sorting system utilizing ESP32 microcontrollers, IR sensors, and inductive sensors to classify metal vs non-metal waste on a conveyor belt with a web dashboard for real-time monitoring. Achieved 100% sorting success rate.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">ESP32</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">IoT</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">Sensors</span>
+                <!-- Project 1 -->
+                <div class="bg-secondary rounded-none border border-zinc-800 hover:border-primary/50 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Image container -->
+                    <div class="h-56 bg-zinc-900 relative overflow-hidden">
+                        <img src="IMAGE_PORTO/ACGS_1.jpg" alt="AGCS Project" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/18181b/10b981?text=ACGS_1.jpg';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-secondary to-transparent opacity-90"></div>
+                        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur border border-primary/30 px-2 py-1 text-[10px] font-mono text-primary flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-primary animate-pulse mr-2"></span> ACTIVE
                         </div>
                     </div>
+                    
+                    <div class="p-6 relative z-10 -mt-10">
+                        <h3 class="text-xl font-bold text-white mb-3 font-tech tracking-wide line-clamp-2">Auto Garbage Collection IoT</h3>
+                        <p class="text-zinc-400 text-sm mb-6 line-clamp-3 leading-relaxed">
+                            A prototype automatic waste-sorting system utilizing ESP32, IR sensors, and inductive sensors to classify metal vs non-metal waste on a conveyor belt. Features a web dashboard for real-time monitoring. Achieved 100% sorting success rate.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-[10px] font-mono px-2 py-1 bg-zinc-900 border border-zinc-700 text-zinc-300">ESP32</span>
+                            <span class="text-[10px] font-mono px-2 py-1 bg-zinc-900 border border-zinc-700 text-zinc-300">Sensors</span>
+                            <span class="text-[10px] font-mono px-2 py-1 bg-zinc-900 border border-zinc-700 text-zinc-300">IoT Dashboard</span>
+                        </div>
+                    </div>
+                    <!-- Hover Effect Line -->
+                    <div class="absolute bottom-0 left-0 w-0 h-1 bg-primary group-hover:w-full transition-all duration-500"></div>
                 </div>
 
-                <!-- Project 2: Water Level -->
-                <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-700 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 flex flex-col group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-56 w-full relative overflow-hidden bg-slate-800 border-b border-slate-700">
-                        <!-- Gambar WATER LEVEL -->
-                        <img src="IMAGE_PORTO/WATER_LEVEL_1.jpg" alt="Automatic Water Level Control System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                <!-- Project 2 -->
+                <div class="bg-secondary rounded-none border border-zinc-800 hover:border-primary/50 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-56 bg-zinc-900 relative overflow-hidden">
+                        <img src="IMAGE_PORTO/WATER_LEVEL_1.jpg" alt="Water Level Project" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/18181b/10b981?text=WATER_LEVEL_1.jpg';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-secondary to-transparent opacity-90"></div>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-white mb-2 line-clamp-2">Automatic Water Level Control System</h3>
-                        <p class="text-slate-400 text-sm mb-4 line-clamp-3 flex-grow">
+                    
+                    <div class="p-6 relative z-10 -mt-10">
+                        <h3 class="text-xl font-bold text-white mb-3 font-tech tracking-wide line-clamp-2">Auto Water Level Control</h3>
+                        <p class="text-zinc-400 text-sm mb-6 line-clamp-3 leading-relaxed">
                             Built a two-tank water level automation setup powered by an Arduino controller. Ultrasonic sensors track water levels and trigger solenoid valves to maintain balance without manual intervention. Integrated with LabVIEW for live status UI.
                         </p>
                         <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">Arduino</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">LabVIEW</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">Control System</span>
+                            <span class="text-[10px] font-mono px-2 py-1 bg-zinc-900 border border-zinc-700 text-zinc-300">Arduino</span>
+                            <span class="text-[10px] font-mono px-2 py-1 bg-zinc-900 border border-zinc-700 text-zinc-300">LabVIEW</span>
+                            <span class="text-[10px] font-mono px-2 py-1 bg-zinc-900 border border-zinc-700 text-zinc-300">Control Systems</span>
                         </div>
                     </div>
+                    <div class="absolute bottom-0 left-0 w-0 h-1 bg-primary group-hover:w-full transition-all duration-500"></div>
                 </div>
 
-                <!-- Project 3: Gesture PLC -->
-                <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-700 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 flex flex-col group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-56 w-full relative overflow-hidden bg-slate-800 border-b border-slate-700">
-                        <!-- Gambar COMVIS -->
-                        <img src="IMAGE_PORTO/COMVIS.jpg" alt="Gesture-Controlled PLC System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-white mb-2 line-clamp-2">Gesture-Controlled PLC System</h3>
-                        <p class="text-slate-400 text-sm mb-4 line-clamp-3 flex-grow">
-                            Developed an innovative system to control a Schneider PLC using hand gestures instead of physical buttons via Computer Vision. Used Python and OpenCV to detect finger positions via webcam, sending signals over LAN to trigger machine outputs.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">PLC</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">Computer Vision</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary/20 text-primary rounded border border-primary/20">Python</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section class="py-20" id="education">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Education</h2>
-                <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
-            </div>
-
-            <div class="space-y-6">
-                <!-- Edu 1 -->
-                <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-primary/50 transition-colors" data-aos="fade-up">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Diponegoro University (UNDIP)</h3>
-                        <p class="text-primary font-medium mt-1">B.App.Sc. in Automation Engineering Technology</p>
-                    </div>
-                    <div class="text-left md:text-right shrink-0">
-                        <span class="inline-block px-4 py-1.5 bg-slate-900 border border-slate-700 rounded-full text-slate-300 text-sm font-medium">Aug 2023 - Present</span>
-                    </div>
-                </div>
-
-                <!-- Edu 2 -->
-                <div class="bg-slate-800/50 p-8 rounded-xl border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-primary/50 transition-colors" data-aos="fade-up">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">SMK Negeri 1 Semarang</h3>
-                        <p class="text-primary font-medium mt-1">4-Year Industrial Automation Engineering</p>
-                    </div>
-                    <div class="text-left md:text-right shrink-0">
-                        <span class="inline-block px-4 py-1.5 bg-slate-900 border border-slate-700 rounded-full text-slate-300 text-sm font-medium">Jul 2019 - Jun 2023</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer & Contact -->
-    <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8" id="contact">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
-            <h2 class="text-3xl font-bold text-white mb-6">Let's Connect</h2>
-            <p class="text-slate-400 mb-8 max-w-xl mx-auto">
-                I'm currently looking for new opportunities in the automation and electrical engineering space. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-            </p>
-            
-            <div class="flex justify-center gap-6 mb-12">
-                <a href="https://linkedin.com/in/muhammad-ulil-abshor-298if" target="_blank" class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-primary hover:border-primary hover:text-white transition-all transform hover:-translate-y-1 shadow-lg">
-                    <i class="fab fa-linkedin-in text-xl"></i>
-                </a>
-                <a href="#" class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-primary hover:border-primary hover:text-white transition-all transform hover:-translate-y-1 shadow-lg">
-                    <i class="fab fa-github text-xl"></i>
-                </a>
-                <a href="mailto:your.email@example.com" class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-primary hover:border-primary hover:text-white transition-all transform hover:-translate-y-1 shadow-lg">
-                    <i class="fas fa-envelope text-xl"></i>
-                </a>
-            </div>
-            
-            <p class="text-slate-500 text-sm">
-                &copy; 2026 Muhammad Ulil Abshor. Built for the Future.
-            </p>
-        </div>
-    </footer>
-
-    <!-- AOS Animation Initialization -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize Animations
-        AOS.init({
-            once: true, // Animasi hanya berjalan sekali saat di-scroll
-            offset: 100, // Jarak trigger animasi
-            duration: 800, // Durasi animasi
-        });
-
-        // Mobile Menu Toggle Logic
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const icon = btn.querySelector('i');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            if(menu.classList.contains('hidden')){
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            }
-        });
-        
-        // Close mobile menu on link click
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            });
-        });
-    </script>
-</body>
-</html>
+                <!-- Project 3 -->
+                <div class="bg-secondary rounded-none border border-zinc-800 hover:border-primary/50 transition-all duration-300 group relative overflow-hidden" data-aos="
